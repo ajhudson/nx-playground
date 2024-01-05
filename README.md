@@ -1,0 +1,5 @@
+- Install PNPM by running a Powershell terminal `iwr https://get.pnpm.io/install.ps1 -useb | iex`
+- Install NX as a global tool `pnpm add nx -g`
+- Install NX workspace as a global tool `pnpm add create-nx-workspace -g`
+- Create a new PNPM workspace `pnpm init` and it will generate a new _package.json_
+- We can remove the _main_ and _scripts_ properties from the _package.json_ as this is in the root of the mono-repo and apps will have their own _package.json_
