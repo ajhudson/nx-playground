@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@ajhudson/boring-label": ["libs/boring-label/src/index.ts"],
       "@ajhudson/is-even": ["libs/is-even/src/index.ts"],
       "@ajhudson/is-odd": ["libs/is-odd/src/index.ts"]
     }

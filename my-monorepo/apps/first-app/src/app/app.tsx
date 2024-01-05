@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
+import { BoringLabel } from '@ajhudson/boring-label';
 
 const StyledApp = styled.div`
   // Your style here
@@ -11,6 +12,7 @@ const StyledApp = styled.div`
 export function App() {
   return (
     <StyledApp>
+      <BoringLabel />
       <NxWelcome title="first-app" />
 
       {/* START: routes */}

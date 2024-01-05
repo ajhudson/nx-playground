@@ -20,7 +20,7 @@ These instructions are based from NX's [integrated monorepo tutorial](https://nx
 
 10. Running `pnpm nx test is-even` should run unit tests for the newly created library
 
-11. Create a second Typescript library by running `pnpm nx generate @nx/js:library is-odd --directory=libs/is-odd --publishable --importPath=@ajhudson/is-odd`
+11. Create a second Typescript library by running `pnpm nx g @nx/js:library is-odd --directory=libs/is-odd --publishable --importPath=@ajhudson/is-odd`
 
 12. Once the library has been created, _tsconfig.base.json_ now has another entry in for the is-odd library
 
@@ -33,3 +33,32 @@ These instructions are based from NX's [integrated monorepo tutorial](https://nx
 16. The React app is created in the _apps_ folder where you will find the _first-app_ React app and also a _first-app-e2e_ for cypress tests.
 
 17. You can start the React app by running `pnpm nx serve first-app`
+
+18. Now we'll create a button to use in our React app by creating a library for it to reside it, and therefore making it available for any future React apps we might add. We'll create our third library by running `pnpm nx g @nx/react:lib boring-label --directory=libs/boring-label --publishable --importPath=@ajhudson/boring-label` (again you can use the `--dry-run` flag before running the command properly)
+
+19. This will create a boilerplate component for us. Now we can import it into our React app. Find _app.tsx_ in _first-app_ and then add the following at the top of the file:
+
+```
+import { BoringLabel } from '@ajhudson/boring-label'
+```
+
+and then place the component somewhere in the _App_ component:
+
+```
+export function App() {
+  return (
+    <StyledApp>
+      <BoringLabel />
+      ...
+    </StyledApp>
+```
+
+The app should render the label showing we can easily add components that can be shared amongst other apps.
+
+---
+
+# Appendix
+
+[Removing a library or app from the NX workspace](https://nx.dev/nx-api/workspace/generators/remove#nxworkspaceremove) (`pnpm nx g @nx/workspace:remove <name of app/lib>`)
+
+- This won't remove a component if it is still referenced by apps
