@@ -1,3 +1,5 @@
+These instructions are based from NX's [integrated monorepo tutorial](https://nx.dev/getting-started/tutorials/integrated-repo-tutorial)...
+
 1. Install PNPM by running a Powershell terminal `iwr https://get.pnpm.io/install.ps1 -useb | iex`
 
 2. Install NX as a global tool `pnpm add nx -g`
@@ -8,12 +10,26 @@
 
 5. We can remove the _main_ and _scripts_ properties from the _package.json_ as this is in the root of the mono-repo and apps will have their own _package.json_
 
-6. Create folders named _apps_ and _libs_ in the root
+6. Run `pnpm create-nx-workspace my-monorepo --preset=core` to create a new folder called _my-monorepo_ which will have a boilerplate mono-repo set up within it
 
-7. Create an empty file and call it _pnpm-workspace.yaml_, then put the following contents in it:
+7. Run `cd my-monorepo` to go into the monorepo directory
 
-```
-packages:
-    - 'apps/*'
-    - 'libs/*'
-```
+8. Create a Typescript library by run `pnpm nx generate @nx/js:library is-even --directory=libs/is-even --publishable --importPath=@ajhudson/is-even` and follow the set-up wizard. This will create a new library and will generate a bunch of files including _project.json_ which is used by NX.
+
+9. Note that _tsconfig.base.json_ has an entry for the newly created library
+
+10. Running `pnpm nx test is-even` should run unit tests for the newly created library
+
+11. Create a second Typescript library by running `pnpm nx generate @nx/js:library is-odd --directory=libs/is-odd --publishable --importPath=@ajhudson/is-odd`
+
+12. Once the library has been created, _tsconfig.base.json_ now has another entry in for the is-odd library
+
+13. Running `pnpm nx run-many -t test` will run the tests for ALL libraries
+
+14. Now we want to add a React app to the monorepo. Run `pnpm add -Dw @nx/react` followed by `pnpm exec nx g @nx/react:init` to install the plugin which will do this for us. Then run `pnpm nx list @nx/react` which will show you a lot of options on how we can create an app (e.g. component, storybook etc).
+
+15. We perform a dry run of adding an application by running `pnpm dlx nx g @nx/react:app first-app --directory=apps/first-app` and follow the options (stylesheet, react router, test runner etc) in the set up wizard (you can also do a dry run with the `--dry-run` flag)
+
+16. The React app is created in the _apps_ folder where you will find the _first-app_ React app and also a _first-app-e2e_ for cypress tests.
+
+17. You can start the React app by running `pnpm nx serve first-app`
