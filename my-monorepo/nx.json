@@ -34,5 +34,22 @@
       }
     }
   },
-  "nxCloudAccessToken": "NmU2YmFiMzAtOTU4Zi00MjMyLThmMTUtOGY1MDI0ODE4YzA4fHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "NmU2YmFiMzAtOTU4Zi00MjMyLThmMTUtOGY1MDI0ODE4YzA4fHJlYWQtd3JpdGU=",
+  "generators": {
+    "@nx/react": {
+      "application": {
+        "style": "styled-components",
+        "linter": "eslint",
+        "bundler": "webpack",
+        "babel": true
+      },
+      "component": {
+        "style": "styled-components"
+      },
+      "library": {
+        "style": "styled-components",
+        "linter": "eslint"
+      }
+    }
+  }
 }
